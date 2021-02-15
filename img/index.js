@@ -4,6 +4,9 @@ const cards = document.querySelector('.dishes')
 const name = document.querySelector('.name')
 const updateForm = document.querySelector('#update-form')
 
+
+
+ 
 fetch(url)
 .then(res => res.json())
 .then(data => {
@@ -16,6 +19,7 @@ fetch(url)
 
         dishImage.src = data.image
         dishName.innerText = data.name
+       
 
         dishImage.addEventListener('click', showInfo)
         
@@ -42,6 +46,8 @@ function createDish(e){
     const newDishCategory = document.querySelector('#dish-category').value
     const newDishHistory = document.querySelector('#dish-history').value
     const newDishIngredients = document.querySelector('#dish-ingredients').value
+    const newDishInstructions = document.querySelector('#dish-instructions').value
+    console.log(newDishInstructions)
 
     console.log(newDishName)
 
@@ -49,16 +55,18 @@ function createDish(e){
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-        }, body: JSON.stringify({name: newDishName, image: newDishImage, category: newDishCategory, food_history: newDishHistory, ingredients: newDishIngredients}) 
+        }, body: JSON.stringify({name: newDishName, image: newDishImage, category: newDishCategory, food_history: newDishHistory, ingredients: newDishIngredients, instructions: newDishInstructions}) 
     })  .then(res => res.json())
-    .then(newDish => {
+//     .then(newDish => {
 
-        // const ingredientsList =  document.querySelector('.ingredients-list') 
-        // const li = document.createElement('li')
-        // //  console.log(ingredient.name)
-        // li.innerText = newIngredient 
-        // ingredientsList.append(li)
-cards.append(newDish)
-    console.log(e)
-})
+//         // const ingredientsList =  document.querySelector('.ingredients-list') 
+//         // const li = document.createElement('li')
+//         // //  console.log(ingredient.name)
+//         // li.innerText = newIngredient 
+//         // ingredientsList.append(li)
+// cards.append(newDish)
+//     console.log(e)
+// })
+
+
 }
