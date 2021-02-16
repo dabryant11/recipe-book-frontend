@@ -1,32 +1,72 @@
 const url = 'http://localhost:3000/dishes'
 const picture = document.querySelector('.detail-image')
-const cards = document.querySelector('.dishes')
 const name = document.querySelector('.name')
 const updateForm = document.querySelector('#update-form')
 const deleteButton = document.querySelector('.button')
-
+// const currentId = document.querySelector('')
+// const currentId = document.getElemen('p')
+// console.log(currentId)
 function getAllDishes(){
     fetch(url)
     .then(res => res.json())
-    .then(data => {
-        data.forEach(dishObject => {
+    .then(displayAllDishes)
+    // .then(data => {
+    //     data.forEach(dishObject => {
 
+    //         const dishCard = document.createElement('div')
+    //         const dishImage = document.createElement('img')
+    //         const dishName = document.createElement('p')
+    //         const deleteDish = document.createElement('div')
+    //         document.getElementById("myDIV").className = "mystyle";
+    //         dishImage.src = dishObject.image
+    //         dishName.innerText = dishObject.name    
+    //         dishCard.dataset.id = dishObject.id
+
+    //         cards.append(dishCard)
+    //         dishCard.append(dishImage)
+    //         dishCard.append(dishName)
+    //         deleteDish.innerHTML = `<button class="button" id="delete-oneDish">Delete</button>`
+    //         dishCard.append(deleteDish)
+    //     })
+       
+    // })
+}
+
+function displayAllDishes(dishObject){
+    console.log(dishObject)
+    const dishDiv = document.querySelector('.dishes')
+    dishDiv.className = "allDishes"
+          dishObject.forEach(dish => {
             const dishCard = document.createElement('div')
             const dishImage = document.createElement('img')
             const dishName = document.createElement('p')
-     
-            dishImage.src = dishObject.image
-            dishName.innerText = dishObject.name    
-            dishName.dataset.id = dishObject.id
+            
+            // document.getElementById("myDIV").className = "";
+            dishImage.src = dish.image
+            dishName.innerText = dish.name    
+            dishCard.dataset.id = dish.id
 
-            cards.append(dishCard)
             dishCard.append(dishImage)
             dishCard.append(dishName)
-    
+            
+            dishCard.innerHTML += `<button class="button" id="delete-oneDish">Delete</button>`
+            dishDiv.append(dishCard)
         })
        
-    })
 }
+// var a = 1, b = 2;
+// var div = document.createElement('div');
+// div.setAttribute('class', 'post block bc2');
+// div.innerHTML = `
+//     <div class="parent">
+//         <div class="child">${a}</div>
+//         <div class="child">+</div>
+//         <div class="child">${b}</div>
+//         <div class="child">=</div>
+//         <div class="child">${a + b}</div>
+//     </div>
+// `;
+// document.getElementById('posts').appendChild(div);
 
 
     updateForm.addEventListener('submit', createDish)
@@ -66,11 +106,18 @@ function getAllDishes(){
         newDishCard.append(newDishImage)
         newDishCard.append(newDishName)
     }
-    // deleteButton.addEventListener('click', deleteOneDish)
-    function deleteOneDish(dish){
-        fetch(`${url}/${data.id}`,{
-            method: 'Delete'
-        })
+    // cards.addEventListener('click', deleteOneDish)
+
+    function deleteOneDish(e){
+
+        if (e.target.id === "delete-oneDish"){
+            fetch(`${url}`,{
+                method: 'Delete'
+            })
+            .then(res => res.json())
+            .then(newDishData => console.log(newDishData))
+        }
+
 
     }
 getAllDishes()
