@@ -13,6 +13,8 @@ function getAllDishes(){
 
 function displayAllDishes(dishObject){
     
+    
+    dishDiv.innerHTML = ""
     dishDiv.className = "allDishes"
           dishObject.forEach(dish => {
             const dishCard = document.createElement('div')
@@ -21,6 +23,9 @@ function displayAllDishes(dishObject){
             
 
             dishImage.src = dish.image
+
+            dishImage.style.height = '400px'
+            dishImage.style.width = 'auto'
             dishName.innerText = dish.name    
             dishCard.dataset.id = dish.id
 
@@ -51,7 +56,7 @@ function displayAllDishes(dishObject){
                 'Content-Type': 'application/json'
             }, body: JSON.stringify({name: newDishName, image: newDishImage, category: newDishCategory, food_history: newDishHistory, ingredients: newDishIngredients, instructions: newDishInstructions}) 
         })  .then(res => res.json())
-            .then(data => displayAllDishes(data)) 
+            // .then(displayAllDishes) 
     }
 
 
@@ -84,12 +89,12 @@ function displayAllDishes(dishObject){
                 method: 'DELETE'
             })
             .then(res => res.json())
+            .then(displayAllDishes)
             
     }
 
     
 
 getAllDishes()
-displayAllDishes()
 
 
