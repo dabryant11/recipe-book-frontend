@@ -2,21 +2,18 @@ const url = 'http://localhost:3000/dishes'
 const picture = document.querySelector('.detail-image')
 const name = document.querySelector('.name')
 const updateForm = document.querySelector('#update-form')
-// const deleteButton = document.querySelector('.button')
 const dishDiv = document.querySelector('.dishes')
 
 
 function getAllDishes(){
     fetch(url)
     .then(res => res.json())
-    .then(displayAllDishes)
+    .then(dishes => displayAllDishes(dishes))
 }
 
 function displayAllDishes(dishObject){
     
-    
-    // dishDiv.innerHTML = ""
-    dishDiv.className = "allDishes"
+          dishDiv.className = "allDishes"
           dishObject.forEach(dish => {
             const dishCard = document.createElement('div')
             const dishImage = document.createElement('img')
@@ -39,7 +36,7 @@ function displayAllDishes(dishObject){
 
             
             dishCard.append(dishImage, dishName, deleteButton)
-            // dishCard.innerHTML += `<button class="button" id="delete-oneDish">Delete</button>`
+            
             dishDiv.append(dishCard)
         })
        
@@ -64,8 +61,11 @@ function displayAllDishes(dishObject){
             headers: {
                 'Content-Type': 'application/json'
             }, body: JSON.stringify(newDish) 
-        })  .then(res => res.json())
-            .then(displayNewDish) 
+        })  
+            .then(res => res.json())
+            .then(dish => displayNewDish(dish)) 
+
+            // displayNewDish(newDish)
     }
 
 
@@ -74,11 +74,11 @@ function displayAllDishes(dishObject){
             const dishImage = document.createElement('img')
             const dishName = document.createElement('p')
             const deleteButton = document.createElement('button')
-
+        
             dishImage.src = dish.image
-
             dishImage.style.height = '100px'
             dishImage.style.width = 'auto'
+
             dishName.innerText = dish.name    
             dishCard.dataset.id = dish.id
 
@@ -97,20 +97,17 @@ function displayAllDishes(dishObject){
 
     
 
-    // dishDiv.addEventListener('click', deleteOneDish)
 
     function deleteOneDish(e){
 
         let dishId = e.target.parentNode.attributes["data-id"].value
-        // console.log(dishSelected)
+        
         
             fetch(`${url}/${dishId}`,{
                 method: 'DELETE'
             })
             .then(res => res.json())
-            .then(console.log)
-
-        removeDishFromDom(dishId)
+            .then(dish => removeDishFromDom(dish.id))
 
     }
 
@@ -119,6 +116,26 @@ function displayAllDishes(dishObject){
         dishToDelete.remove()
     }
     
+
+    //### OPTIMISTIC DELETE ###//
+    // function deleteOneDish(e){
+
+    //     let dishId = e.target.parentNode.attributes["data-id"].value
+        
+        
+    //         fetch(`${url}/${dishId}`,{
+    //             method: 'DELETE'
+    //         })
+
+
+        // removeDishFromDom(dishId)
+
+    // }
+
+    // function removeDishFromDom(id){
+    //     const dishToDelete = dishDiv.querySelector(`[data-id="${id}"]`)
+    //     dishToDelete.remove()
+    // }
 
 getAllDishes()
 
