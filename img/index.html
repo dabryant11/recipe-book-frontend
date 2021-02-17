@@ -51,11 +51,11 @@
       <div class="ui grid">
         <div class="four wide column">
           <br><br>
-          <h3 class="ui center aligned header">Tastes</h3>
+          <h3 class="ui center aligned header">Dishes</h3>
           <div class="update-dish-form">
             <!-- <a class="item active"> -->
             <!-- </a> -->
-            <form id="update-form" data-id="insert Dish ID">
+            <form id="add-form" data-id="insert Dish ID">
               <h4>Add a Dish</h4>
               <label for="name">New Dish: </label>
               <input type="text" name="name" id="dish-name" />
@@ -74,13 +74,30 @@
               <br>
               <label for="text">Ingredients: </label>
               <input type="text" text="text" id="dish-ingredients" />
+              <br>
               <input type="submit" value="Create" />  
             </form>
 
           </div>
+
           <br>
           <br>
-          <button class="ui black button fluid ui button" id="show-all-btn">Show All</button>
+          <br>
+                  <div>
+                    <form id="edit-form" data-id="insert Dish ID">
+                      <h4>Edit a Dish</h4>
+                      <label for="name">Dish: </label>
+                      <input type="text" name="name" id="edit-dish-name" />
+                      <br>
+                      <label for="url">Image: </label>
+                      <input type="img" img.src="url" id="edit-dish-image" />
+                      <br>
+                      <label for="text">Ingredients: </label>
+                      <input type="text" text="text" id="edit-dish-ingredients" />
+                      <br>
+                      <input type="submit" value="edit" />  
+                    </form>
+                  </div>
 
         </div>
 
