@@ -5,6 +5,7 @@ const updateForm = document.querySelector('#update-form')
 const dishDiv = document.querySelector('.dishes')
 
 
+
 function getAllDishes(){
     fetch(url)
     .then(res => res.json())
@@ -19,6 +20,7 @@ function displayAllDishes(dishObject){
             const dishImage = document.createElement('img')
             const dishName = document.createElement('p')
             const deleteButton = document.createElement('button')
+            const editButton = document.createElement('button')
 
             dishImage.src = dish.image
 
@@ -26,6 +28,11 @@ function displayAllDishes(dishObject){
             dishImage.style.width = 'auto'
             dishName.innerText = dish.name    
             dishCard.dataset.id = dish.id
+
+            editButton.innerText = "edit"
+            editButton.className = "edit-button"
+            editButton.id = "edit-one-dish"
+            editButton.addEventListener('click', editOneDish )
 
 
             deleteButton.innerText = "delete"
@@ -35,7 +42,7 @@ function displayAllDishes(dishObject){
             
 
             
-            dishCard.append(dishImage, dishName, deleteButton)
+            dishCard.append(dishImage, dishName, deleteButton, editButton)
             
             dishDiv.append(dishCard)
         })
@@ -74,13 +81,19 @@ function displayAllDishes(dishObject){
             const dishImage = document.createElement('img')
             const dishName = document.createElement('p')
             const deleteButton = document.createElement('button')
-        
+            const editButton = document.createElement('button')
+            
             dishImage.src = dish.image
             dishImage.style.height = '100px'
             dishImage.style.width = 'auto'
 
             dishName.innerText = dish.name    
             dishCard.dataset.id = dish.id
+
+            editButton.innerText = "edit"
+            editButton.className = "edit-button"
+            editButton.id = "edit-one-dish"
+            editButton.addEventListener('click', editOneDish )
 
 
             deleteButton.innerText = "delete"
@@ -90,7 +103,7 @@ function displayAllDishes(dishObject){
             
 
             
-            dishCard.append(dishImage, dishName, deleteButton)
+            dishCard.append(dishImage, dishName, deleteButton, editButton)
             dishDiv.append(dishCard)
     }
 
@@ -116,6 +129,24 @@ function displayAllDishes(dishObject){
         dishToDelete.remove()
     }
     
+
+    function editOneDish(e){
+        e.preventDefault()
+        const updatedDishName = document.querySelector('#edit-dish-name').value
+        const updatedDishImage = document.querySelector('#edit-dish-image').value
+        const updatedDishIngredients = document.querySelector('#edit-dish-ingredients').value
+        // const editForm = document.querySelector('#edit-form')
+        // console.log(editForm)
+        let dishId = e.target.parentNode.attributes["data-id"].value
+        const updatedDish = {name: updatedDishName, image: updatedDishImage, ingredients: updatedDishIngredients}
+        fetch(`${url}/${dishId}`,{
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify(updatedDish) 
+        })  .then(res => res.json())
+        .then(updatedDish => console.log(updatedDish)) 
+    }
 
     //### OPTIMISTIC DELETE ###//
     // function deleteOneDish(e){
