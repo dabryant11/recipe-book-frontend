@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <head>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
     integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
     crossorigin="anonymous" />
@@ -9,7 +7,6 @@
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <div id="full-image">
     <div class="ui fixed inverted main menu">
@@ -38,24 +35,18 @@
             </button>
           </div>
         </div>
-
       </div>
     </div>
-
-
     <br><br><br><br><br>
-
-
     <div class="all">
-
       <div class="ui grid">
         <div class="four wide column">
           <br><br>
-          <h3 class="ui center aligned header">Dishes</h3>
+          <h3 class="ui center aligned header">Tastes</h3>
           <div class="update-dish-form">
             <!-- <a class="item active"> -->
             <!-- </a> -->
-            <form id="add-form" data-id="insert Dish ID">
+            <form id="update-form" data-id="insert Dish ID">
               <h4>Add a Dish</h4>
               <label for="name">New Dish: </label>
               <input type="text" name="name" id="dish-name" />
@@ -74,56 +65,42 @@
               <br>
               <label for="text">Ingredients: </label>
               <input type="text" text="text" id="dish-ingredients" />
-              <br>
               <input type="submit" value="Create" />  
             </form>
-
           </div>
-
           <br>
           <br>
-          <br>
-<<<<<<< HEAD
-                  <div>
-                    <form id="edit-form" data-id="insert Dish ID">
-                      <h4>Edit a Dish</h4>
-                      <label for="name">Dish: </label>
-                      <input type="text" name="name" id="edit-dish-name" />
-                      <br>
-                      <label for="url">Image: </label>
-                      <input type="img" img.src="url" id="edit-dish-image" />
-                      <br>
-                      <label for="text">Ingredients: </label>
-                      <input type="text" text="text" id="edit-dish-ingredients" />
-                      <br>
-                      <input type="submit" value="edit" />  
-                    </form>
-                  </div>
-=======
+          <div>
+            <form id="edit-form" data-id="insert Dish ID">
+              <h4>Edit a Dish</h4>
+              <label for="name">Dish: </label>
+              <input type="text" name="name" id="edit-dish-name" />
+              <br>
+              <label for="url">Image: </label>
+              <input type="img" img.src="url" id="edit-dish-image" />
+              <br>
+              <label for="text">Ingredients: </label>
+              <input type="text" text="text" id="edit-dish-ingredients" />
+              <br>
+              <input type="submit" value="edit" />  
+            </form>
+          </div>
           <!-- <button class="ui black button fluid ui button" id="show-all-btn"> </button> -->
->>>>>>> 3d2433ee533dfd50e9e90ac71c988766b3735259
-
         </div>
-
         <div class="twelve wide stretched column">
           <div class="ui segment" id="back">
             <div class="dishes">
-              
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <!-- <div class="ui modal" id="modal-id">
     <i class="close icon"></i>
   </div> -->
-  
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 </body>
-
 </html>
 
