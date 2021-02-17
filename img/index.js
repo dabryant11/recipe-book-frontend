@@ -1,22 +1,24 @@
 const url = 'http://localhost:3000/dishes'
 const picture = document.querySelector('.detail-image')
 const name = document.querySelector('.name')
+<<<<<<< HEAD
 const addForm = document.querySelector('#add-form')
 // const deleteButton = document.querySelector('.button')
+=======
+const updateForm = document.querySelector('#update-form')
+>>>>>>> 3d2433ee533dfd50e9e90ac71c988766b3735259
 const dishDiv = document.querySelector('.dishes')
 
 
 function getAllDishes(){
     fetch(url)
     .then(res => res.json())
-    .then(displayAllDishes)
+    .then(dishes => displayAllDishes(dishes))
 }
 
 function displayAllDishes(dishObject){
     
-    
-    // dishDiv.innerHTML = ""
-    dishDiv.className = "allDishes"
+          dishDiv.className = "allDishes"
           dishObject.forEach(dish => {
             const dishCard = document.createElement('div')
             const dishImage = document.createElement('img')
@@ -45,8 +47,13 @@ function displayAllDishes(dishObject){
             
 
             
+<<<<<<< HEAD
             dishCard.append(dishImage, dishName, deleteButton,editButton)
             // dishCard.innerHTML += `<button class="button" id="delete-oneDish">Delete</button>`
+=======
+            dishCard.append(dishImage, dishName, deleteButton)
+            
+>>>>>>> 3d2433ee533dfd50e9e90ac71c988766b3735259
             dishDiv.append(dishCard)
         })
        
@@ -71,10 +78,18 @@ function displayAllDishes(dishObject){
             headers: {
                 'Content-Type': 'application/json'
             }, body: JSON.stringify(newDish) 
+<<<<<<< HEAD
         })  .then(res => res.json())
         .then(displayNewDish) 
         
         e.target.reset()
+=======
+        })  
+            .then(res => res.json())
+            .then(dish => displayNewDish(dish)) 
+
+            // displayNewDish(newDish)
+>>>>>>> 3d2433ee533dfd50e9e90ac71c988766b3735259
     }
 
 
@@ -83,12 +98,16 @@ function displayAllDishes(dishObject){
             const dishImage = document.createElement('img')
             const dishName = document.createElement('p')
             const deleteButton = document.createElement('button')
+<<<<<<< HEAD
             const updateButton = document.createElement('button')
 
+=======
+        
+>>>>>>> 3d2433ee533dfd50e9e90ac71c988766b3735259
             dishImage.src = dish.image
-
             dishImage.style.height = '100px'
             dishImage.style.width = 'auto'
+
             dishName.innerText = dish.name    
             dishCard.dataset.id = dish.id
 
@@ -112,20 +131,17 @@ function displayAllDishes(dishObject){
 
     
 
-    // dishDiv.addEventListener('click', deleteOneDish)
 
     function deleteOneDish(e){
 
         let dishId = e.target.parentNode.attributes["data-id"].value
-        // console.log(dishSelected)
+        
         
             fetch(`${url}/${dishId}`,{
                 method: 'DELETE'
             })
             .then(res => res.json())
-            .then(console.log)
-
-        removeDishFromDom(dishId)
+            .then(dish => removeDishFromDom(dish.id))
 
     }
 
@@ -135,6 +151,7 @@ function displayAllDishes(dishObject){
     }
     
 
+<<<<<<< HEAD
     
     
     function editOneDish(e){
@@ -163,6 +180,29 @@ function displayAllDishes(dishObject){
 
 
 
+=======
+    //### OPTIMISTIC DELETE ###//
+    // function deleteOneDish(e){
+
+    //     let dishId = e.target.parentNode.attributes["data-id"].value
+        
+        
+    //         fetch(`${url}/${dishId}`,{
+    //             method: 'DELETE'
+    //         })
+
+
+        // removeDishFromDom(dishId)
+
+    // }
+
+    // function removeDishFromDom(id){
+    //     const dishToDelete = dishDiv.querySelector(`[data-id="${id}"]`)
+    //     dishToDelete.remove()
+    // }
+
+getAllDishes()
+>>>>>>> 3d2433ee533dfd50e9e90ac71c988766b3735259
 
 
     getAllDishes()
