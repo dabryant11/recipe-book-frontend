@@ -43,10 +43,10 @@
         <div class="four wide column">
           <br><br>
           <h3 class="ui center aligned header">Tastes</h3>
-          <div class="update-dish-form">
+          <div class="create-dish-form">
             <!-- <a class="item active"> -->
             <!-- </a> -->
-            <form id="update-form" data-id="insert Dish ID">
+            <form id="create-form" data-id="insert Dish ID">
               <h4>Add a Dish</h4>
               <label for="name">New Dish: </label>
               <input type="text" name="name" id="dish-name" />
@@ -63,15 +63,15 @@
               <label for="text">Instructions: </label>
               <input type="text" text="text" id="dish-instructions" />
               <br>
-              <label for="text">Ingredients: </label>
-              <input type="text" text="text" id="dish-ingredients" />
+              <!-- <label for="text">Ingredients: </label>
+              <input type="text" text="text" id="dish-ingredients" /> -->
               <input type="submit" value="Create" />  
             </form>
           </div>
           <br>
           <br>
           <div>
-            <form id="edit-form" data-id="insert Dish ID">
+            <form id="update-form" class="hidden" data-id="insert Dish ID">
               <h4>Edit a Dish</h4>
               <label for="name">Dish: </label>
               <input type="text" name="name" id="edit-dish-name" />
@@ -79,13 +79,12 @@
               <label for="url">Image: </label>
               <input type="img" img.src="url" id="edit-dish-image" />
               <br>
-              <label for="text">Ingredients: </label>
+              <!-- <label for="text">Ingredients: </label>
               <input type="text" text="text" id="edit-dish-ingredients" />
-              <br>
-              <input type="submit" value="update" />  
+              <br> -->
+              <input type="submit" value="update" id="update-button"/>  
             </form>
           </div>
-          <!-- <button class="ui black button fluid ui button" id="show-all-btn"> </button> -->
         </div>
         <div class="twelve wide stretched column">
           <div class="ui segment" id="back">
