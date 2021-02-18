@@ -139,8 +139,24 @@ function displayAllDishes(dishObject){
                 headers: {
                     'Content-Type': 'application/json'
                 }, body: JSON.stringify(updatedDish) 
-            })  .then(res => res.json())
-            .then(data => displayNewDish(data))
+            })
+              .then(res => res.json())
+            .then(updatedDishData => {
+
+
+
+                let selectedDiv = document.querySelector(`div[data-id="${dishId}"]`)
+
+                let selectedDivImg = selectedDiv.querySelector('img')
+                let selectedDivName = selectedDiv.querySelector('p')
+
+
+                selectedDivImg.src = updatedDishImage
+                selectedDivName.innerText = updatedDishName
+
+
+
+            })
         }
         
         
