@@ -164,23 +164,30 @@ function displayDishInfo(dishInfo){
             let li2 = document.createElement('li')
             let li3 = document.createElement('li')
             let br = document.createElement('br')
+            let br2 = document.createElement('br')
+            let br3 = document.createElement('br')
+            let br4 = document.createElement('br')
+
             li.className = ("dish-elements")
-            let dishHistory = `Food history: ${dishInfo.food_history} `       
+            let dishHistory = `Food History: ${dishInfo.food_history} `       
             let dishCategory = `Category: ${dishInfo.category}`
             let dishInstuctions = `Instructions: ${dishInfo.instructions}`
             let dishIngredients = dishInfo.ingredients
+
             dishIngredients.forEach(ingObj => {
                 let li4 = document.createElement('li')
                 ingName = `Ingredients: ${ingObj.name}`
                 li4.append(ingName)
-                detailDiv.append(li4)
+                // detailDiv.append(li4)
+                
+                li.append(dishHistory)
+                li2.append(dishCategory)
+                li3.append(dishInstuctions)
+                detailDiv.append(br, li, br2, li2, br3, li3, br4, li4)
+                dishBlock.append(detailDiv)
             })
-            li.append(dishHistory)
-            li2.append(dishCategory)
-            li3.append(dishInstuctions)
-            detailDiv.append(br, li, li2, li3)
-            dishBlock.append(detailDiv)
+            
  }
 
- 
+
 getAllDishes()
