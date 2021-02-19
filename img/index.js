@@ -3,7 +3,7 @@ const picture = document.querySelector('.detail-image')
 const name = document.querySelector('.name')
 const createForm = document.querySelector('#create-form')
 const updateForm = document.querySelector('#update-form')
-const dishBlock = document.querySelector(`.dish-info-block`)
+const dishBlock = document.querySelector('.dish-info-block')
 const dishDiv = document.querySelector('.dishes')
 const updateButton = document.querySelector('#update-button')
 let addDish = false
@@ -71,14 +71,30 @@ function editOneDish(e){
     })
 }
 
+let toggle = true
 
 function toggleImageInfo(e){
     e.preventDefault()
     let dishId = e.target.dataset.id
-    if(e.target.className == "image-class"){
+    
+
+    if(e.target.tagName == "IMG" && toggle){
+        console.log('if', toggle)
         fetch(`${url}/${dishId}`)
         .then(res => res.json())
         .then(dishInfo => displayDishInfo(dishInfo))
+        
+        toggle = false
+    } else {
+        console.log('else', toggle)
+        const dishLi = dishBlock.querySelectorAll('li')
+        console.log(dishLi)
+        dishLi.forEach(li => li.remove())
+
+        const breaks = dishBlock.querySelectorAll('br')
+        console.log(breaks)
+        breaks.forEach(br => br.remove())
+        toggle = true
     }
 }
 
@@ -158,8 +174,8 @@ function displayAllDishes(dishObject){
 
 
 function displayDishInfo(dishInfo){
-            detailDiv = document.createElement('div')
-            detailDiv.className = ("dish-info")
+            // detailDiv = document.createElement('div')
+            // detailDiv.className = ("dish-info")
             let li = document.createElement('li')
             let li2 = document.createElement('li')
             let li3 = document.createElement('li')
@@ -183,8 +199,8 @@ function displayDishInfo(dishInfo){
                 li.append(dishHistory)
                 li2.append(dishCategory)
                 li3.append(dishInstuctions)
-                detailDiv.append(br, li, br2, li2, br3, li3, br4, li4)
-                dishBlock.append(detailDiv)
+                dishBlock.append(br, li, br2, li2, br3, li3, br4, li4)
+                
             })
             
  }
