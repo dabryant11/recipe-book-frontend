@@ -8,7 +8,7 @@ const dishDiv = document.querySelector('.dishes')
 const updateButton = document.querySelector('#update-button')
 let addDish = false
 createForm.addEventListener('submit', createDish)
-dishDiv.addEventListener('click', toggleImageInfo)
+// dishDiv.addEventListener('click', toggleImageInfo)
 updateForm.addEventListener('submit', editOneDish)
 
 
@@ -78,7 +78,7 @@ function toggleImageInfo(e){
     let dishId = e.target.dataset.id
     
 
-    if(e.target.tagName == "IMG" && toggle){
+    if( toggle){
         console.log('if', toggle)
         fetch(`${url}/${dishId}`)
         .then(res => res.json())
@@ -116,6 +116,7 @@ function toggleForm(e){
 ////////// RENDER FUNCTIONS \\\\\\\\\\
 
 function displayAllDishes(dishObject){
+    console.log(dishObject)
     dishDiv.className = "allDishes"
     dishObject.forEach(dish => {
         const dishCard = document.createElement('div')
@@ -129,6 +130,7 @@ function displayAllDishes(dishObject){
             dishImage.style.height = '100px'
             dishImage.style.width = 'auto'
             dishImage.className = "image-class"
+            dishImage.addEventListener('click', toggleImageInfo)
             dishName.innerText = dish.name    
             dishCard.dataset.id = dish.id
             editButton.dataset.id = dish.id
@@ -157,6 +159,7 @@ function displayAllDishes(dishObject){
             dishImage.style.width = 'auto'
             dishImage.dataset.id = dish.id 
             dishImage.className = "image-class"
+            dishImage.addEventListener('click', toggleImageInfo)
             dishName.innerText = dish.name    
             dishCard.dataset.id = dish.id
             editButton.dataset.id = dish.id
@@ -174,6 +177,7 @@ function displayAllDishes(dishObject){
 
 
 function displayDishInfo(dishInfo){
+        console.log("dish info", dishInfo)
             // detailDiv = document.createElement('div')
             // detailDiv.className = ("dish-info")
             let li = document.createElement('li')
@@ -189,19 +193,21 @@ function displayDishInfo(dishInfo){
             let dishCategory = `Category: ${dishInfo.category}`
             let dishInstuctions = `Instructions: ${dishInfo.instructions}`
             let dishIngredients = dishInfo.ingredients
+            console.log('dish li info', dishHistory, dishCategory, dishInstuctions, dishIngredients)
+
+            li.append(dishHistory)
+            li2.append(dishCategory)
+            li3.append(dishInstuctions)
+            dishBlock.append(br, li, br2, li2, br3, li3, br4)
 
             dishIngredients.forEach(ingObj => {
                 let li4 = document.createElement('li')
                 ingName = `Ingredients: ${ingObj.name}`
                 li4.append(ingName)
-                // detailDiv.append(li4)
-                
-                li.append(dishHistory)
-                li2.append(dishCategory)
-                li3.append(dishInstuctions)
-                dishBlock.append(br, li, br2, li2, br3, li3, br4, li4)
-                
+                dishBlock.append(li4)
             })
+
+            
             
  }
 
