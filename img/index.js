@@ -94,6 +94,16 @@ function toggleImageInfo(e){
         const breaks = dishBlock.querySelectorAll('br')
         console.log(breaks)
         breaks.forEach(br => br.remove())
+      
+        
+        const image = dishBlock.querySelectorAll('.dish-info-img')
+        console.log(breaks)
+        image.forEach(img => img.remove())
+      
+        
+        const header = dishBlock.querySelectorAll('h7')
+        console.log(breaks)
+        header.forEach(h7 => h7.remove())
         toggle = true
     }
 }
@@ -187,7 +197,17 @@ function displayDishInfo(dishInfo){
             let br2 = document.createElement('br')
             let br3 = document.createElement('br')
             let br4 = document.createElement('br')
+            let br5 = document.createElement('br')
+            let selectedDishImage = document.createElement('img')
+            let selectedDishImageHeader = document.createElement('h7')
 
+            selectedDishImage.style.height = '400px'
+            selectedDishImage.style.width = 'auto'
+
+
+            selectedDishImage.src = dishInfo.image
+            selectedDishImage.className = 'dish-info-img'
+            selectedDishImageHeader.innerText = dishInfo.name
             li.className = ("dish-elements")
             let dishHistory = `Food History: ${dishInfo.food_history} `       
             let dishCategory = `Category: ${dishInfo.category}`
@@ -198,7 +218,7 @@ function displayDishInfo(dishInfo){
             li.append(dishHistory)
             li2.append(dishCategory)
             li3.append(dishInstuctions)
-            dishBlock.append(br, li, br2, li2, br3, li3, br4)
+            dishBlock.append( selectedDishImageHeader, br5, selectedDishImage, br, li, br2, li2, br3, li3, br4)
 
             dishIngredients.forEach(ingObj => {
                 let li4 = document.createElement('li')
