@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
     integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
-    crossorigin="anonymous" />
+    crossorigin="anonymous" /> -->
   <script src="index.js" defer></script>
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
+
+  <!-- <img src = "https://dewey.tailorbrands.com/production/brand_version_mockup_image/589/4663998589_43785c9d-4ee5-4eda-bba0-9688067f981b.png?cb=1613531912" style="width:50px;height:50px;" />  -->
 </head>
 <body>
   <div id="full-image">
     <div class="ui fixed inverted main menu">
       <div class="ui container">
         <br>
-        <h1 class="ui grey inverted header"><img src = "https://dewey.tailorbrands.com/production/brand_version_mockup_image/589/4663998589_43785c9d-4ee5-4eda-bba0-9688067f981b.png?cb=1613531912" alt ="Recipe-Book"/></h1>
+        <!-- <h1 class="ui grey inverted header"><img src = "https://dewey.tailorbrands.com/production/brand_version_mockup_image/589/4663998589_43785c9d-4ee5-4eda-bba0-9688067f981b.png?cb=1613531912" alt ="Recipe-Book"/></h1> -->
         <div class="right menu" id="lIMenu">
           <form id="login-form">
             <div class="ui form">
-              <div class="inline field">
+              <div class="inline-field"  background = 'recipe-book-header-background.jpeg' >
                 <br>
-                <input type="text" name="username" placeholder="Weclome User1">
+                <!-- <input type="text" name="username" placeholder="Weclome User1"> -->
+                <img src = "https://dewey.tailorbrands.com/production/brand_version_mockup_image/589/4663998589_43785c9d-4ee5-4eda-bba0-9688067f981b.png?cb=1613531912" style="width:50px;height:50px;" /> 
+
+                <h1 style="color:aqua;">Welcome User1 !</h1>
                 <!-- <button class="ui button" type="submit">Login</button> -->
               </div>
             </div>
           </form>
         </div>
+
+        <br><br><br><br><br>
+
+        <div class="twelve wide stretched column">
+          <div class="dish-info-block" id="back">
+            <div class="dishes">
+            </div>
+          </div>
+        </div> 
+
+
         <div class="right menu">
           <div class="inline field" id="menu-area">
             <br>
@@ -40,14 +57,14 @@
     <br><br><br><br><br>
     <div class="all">
       <div class="ui grid">
-        <div class="four wide column">
+        <div class="four-wide-column">
           <br><br>
-          <h3 class="ui center aligned header">Tastes</h3>
+          <h3 class="ui center aligned header">Add a Dish</h3>
           <div class="create-dish-form">
             <!-- <a class="item active"> -->
             <!-- </a> -->
             <form id="create-form" data-id="insert Dish ID">
-              <h4>Add a Dish</h4>
+              <!-- <h4>Add a Dish</h4> -->
               <label for="name">New Dish: </label>
               <input type="text" name="name" id="dish-name" />
               <br>
@@ -83,12 +100,12 @@
             </form>
           </div>
         </div>
-        <div class="twelve wide stretched column">
+        <!-- <div class="twelve wide stretched column">
           <div class="dish-info-block" id="back">
             <div class="dishes">
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
