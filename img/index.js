@@ -13,6 +13,7 @@ function getAllDishes(){
     .then(res => res.json())
     .then(dishes => displayAllDishes(dishes))
 }
+
 function displayAllDishes(dishObject){
           dishDiv.className = "allDishes"
           dishObject.forEach(dish => {
@@ -23,9 +24,14 @@ function displayAllDishes(dishObject){
             const editButton = document.createElement('button')
             updateForm.dataset.id = dish.id
 
+            dishImage.dataset.id = dish.id 
             dishImage.src = dish.image
             dishImage.style.height = '100px'
             dishImage.style.width = 'auto'
+            dishImage.className = "image-class"
+
+            // console.log(dishImage)
+
             dishName.innerText = dish.name    
             dishCard.dataset.id = dish.id
             
@@ -77,6 +83,9 @@ function displayAllDishes(dishObject){
             dishImage.src = dish.image
             dishImage.style.height = '100px'
             dishImage.style.width = 'auto'
+            dishImage.dataset.id = dish.id 
+            dishImage.className = "image-class"
+            // console.log(dishImage.dataset.id)
 
             dishName.innerText = dish.name    
             dishCard.dataset.id = dish.id
@@ -154,12 +163,60 @@ function displayAllDishes(dishObject){
                 selectedDivImg.src = updatedDishImage
                 selectedDivName.innerText = updatedDishName
 
-
-
             })
         }
+
+
+        dishDiv.addEventListener('click', toggleImageInfo)
+
+        function toggleImageInfo(e){
+            e.preventDefault()
+            
         
+            let dishId = e.target.dataset.id
+            
+            if(e.target.className == "image-class"){
+
+                fetch(`${url}/${dishId}`)
+    
+                .then(res => res.json())
+                .then(dishInfo => displayDishInfo(dishInfo))
+            }
+            
+        }
         
+        function displayDishInfo(dishInfo){
+            
+            detailDiv = document.createElement('div')
+            detailDiv.className = ("dish-info")
+            
+            
+            let li = document.createElement('li')
+            let li2 = document.createElement('li')
+            let li3 = document.createElement('li')
+
+            li.className = ("dish-elements")
+
+            let dishHistory = dishInfo.food_history       
+            let dishCategory = dishInfo.category
+            let dishInstuctions = dishInfo.instructions
+            
+            let dishIngredients = dishInfo.ingredients
+            dishIngredients.forEach(ingObj => {
+            let li4 = document.createElement('li')
+            ingName = ingObj.name
+            li4.append(ingName)
+            detailDiv.append(li4)
+            })
+
+            li.append(dishHistory)
+            li2.append(dishCategory)
+            li3.append(dishInstuctions)
+            detailDiv.append(li, li2, li3)
+            dishDiv.append(detailDiv)
+        }
+
+
 
 
 
