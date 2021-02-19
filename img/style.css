@@ -3,6 +3,10 @@
      display: none;
    }
 
-   .dish-elements {
+   .dish-info {
+     float: left;
+   }
+
+   .allDishes {
      float: left;
    }

@@ -3,6 +3,7 @@ const picture = document.querySelector('.detail-image')
 const name = document.querySelector('.name')
 const createForm = document.querySelector('#create-form')
 const updateForm = document.querySelector('#update-form')
+const dishBlock = document.querySelector(`.dish-info-block`)
 
 const dishDiv = document.querySelector('.dishes')
 
@@ -48,6 +49,7 @@ function displayAllDishes(dishObject){
             deleteButton.id = "delete-one-dish"
 
             deleteButton.addEventListener('click', deleteOneDish )
+            // console.log(dishInfo)
             dishCard.append(dishImage, dishName, deleteButton, editButton)
             dishDiv.append(dishCard)
         })
@@ -102,6 +104,7 @@ function displayAllDishes(dishObject){
             deleteButton.id = "delete-one-dish"
             deleteButton.addEventListener('click', deleteOneDish)
             
+            
             dishCard.append(dishImage, dishName, deleteButton, editButton)
             dishDiv.append(dishCard)
         }
@@ -150,7 +153,7 @@ function displayAllDishes(dishObject){
                 }, body: JSON.stringify(updatedDish) 
             })
               .then(res => res.json())
-            .then(updatedDishData => {
+              .then(updatedDishData => {
 
 
 
@@ -194,26 +197,28 @@ function displayAllDishes(dishObject){
             let li = document.createElement('li')
             let li2 = document.createElement('li')
             let li3 = document.createElement('li')
+            let br = document.createElement('br')
 
             li.className = ("dish-elements")
 
-            let dishHistory = dishInfo.food_history       
-            let dishCategory = dishInfo.category
-            let dishInstuctions = dishInfo.instructions
-            
+            let dishHistory = `Food history: ${dishInfo.food_history} `       
+            let dishCategory = `Category: ${dishInfo.category}`
+            let dishInstuctions = `Instructions: ${dishInfo.instructions}`
             let dishIngredients = dishInfo.ingredients
+            
+            
             dishIngredients.forEach(ingObj => {
-            let li4 = document.createElement('li')
-            ingName = ingObj.name
-            li4.append(ingName)
-            detailDiv.append(li4)
+                let li4 = document.createElement('li')
+                ingName = `Ingredients: ${ingObj.name}`
+                li4.append(ingName)
+                detailDiv.append(li4)
             })
 
             li.append(dishHistory)
             li2.append(dishCategory)
             li3.append(dishInstuctions)
-            detailDiv.append(li, li2, li3)
-            dishDiv.append(detailDiv)
+            detailDiv.append(li, br, li2,li3)
+            dishBlock.append(detailDiv)
         }
 
 
